@@ -2,10 +2,10 @@
 #include <stdlib.h>
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
-int N=6;
 
-/*
-char init_othello(int N, char gameboard[N][N]){
+
+
+void init_othello(int N, char gameboard[N][N]){
 	int i,j;
 	int center;
 	center = N/2;
@@ -18,11 +18,10 @@ char init_othello(int N, char gameboard[N][N]){
 		gameboard[center][center] = 'O';
 		gameboard[center][center-1] = 'X';
 		gameboard[center-1][center] = 'X';
-		
-	return gameboard[N][N];
-}*/
-int	flip_result(int N,int gameboard[N][N]);
-int check_flip_result(int N,int gameboard[N][N]);
+}
+
+int	flip_result(int N,char gameboard[N][N]);
+int check_flip_result(int N,char gameboard[N][N]);
 
 
 int Blank(int N, char gameboard[N][N]){
@@ -53,15 +52,6 @@ void print_othello(int N, char gameboard[N][N]){
 	}
 }
 
-char input(int x,int y,char gameboard[N][N]){	
-	printf("input row: ");
-	scanf("%i", &x);
-	printf("input colmn: ");
-	scanf("%i", &y);
-	gameboard[x][y] = 'X';
-	
-	return gameboard[x][y];
-}
 
 int status(int N,int gameboard[N][N]){	
 	int i; 
@@ -105,6 +95,7 @@ void check_result(int N,int gameboard[N][N]){
 }
 
 void main(){
+	int N=6;
 	char gameboard[N][N];
 	int isGameEnd;
 	int x,y;
@@ -112,8 +103,7 @@ void main(){
 	int check;
 	int flip;
 	
-	check=check_flip_result(N,gameboard[N][N]);
-	flip=flip_result(x,y,N,gameboard[N][N]);
+
 
 //init_othello
 	int i,j;
@@ -129,9 +119,15 @@ void main(){
 		gameboard[center][center-1] = 'X';
 		gameboard[center-1][center] = 'X';
 
-//	gameboard[N][N]=init_othello(N,gameboard[N][N]);//reset the board
-	isGameEnd=Blank(N,gameboard[N][N]);
-
+//	init_othello(N,gameboard[N][N]);//reset the board
+//	isGameEnd=Blank(N,gameboard[N][N]);
+	
+//	print_othello(N,gameboard[N][N]);
+	
+	
+	check_flip_result(N,gameboard[N][N]);
+	flip_result(N,gameboard[x][y]);
+	
 	while (isGameEnd!=0){
 		print_othello(N,gameboard[N][N]);
 		
@@ -139,7 +135,11 @@ void main(){
 		
 			continue;
 			
-		gameboard[N][N]=input(x,y,gameboard[N][N]);
+		printf("input row: ");
+		scanf("%i", &x);
+		printf("input colmn: ");
+		scanf("%i", &y);
+		gameboard[x][y] = 'X';
 			
 		if(check_flip_result==0)
 			if(flip_result!=0){
@@ -151,12 +151,11 @@ void main(){
 	}
 	
 	check_result(N,gameboard[N][N]);
-	
 	return 0;
 }
 
-
-int	flip_result(int x, int y,int N,int gameboard[N][N]){
+/*
+int	flip_result(int x, int y,int N,int gameboard[x][y]){
 	int W,E,S,North,SW,NW,SE,NE =0;
 	int flip_result;
 	int k;
