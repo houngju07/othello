@@ -4,81 +4,9 @@
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
 //#define N 6
-/*int N;
-
-void print_gamebard(int gameboard[N][N]){
-	int i,j;
-	
-	for(i=0;i<N;i++){
-		for(j=0;j<N;j++){
-			printf("%i", gameboard[i][j]);
-		}	printf("\n");
-	}
-	return 0;
-}
-
-int	init_othello(int N, int gameboard[N][N]){
-	int i,j;		
-	int center ;
-	center = (N/2);
-	
-		for(i=0;i<N;i++){
-			for(j=0;j<N;j++){
-				gameboard[i][j]=0;
-			}
-		}
-	gameboard[center][center] = 1;
-	gameboard[center+1][center+1] =1;
-	gameboard[center+1][center] = 2;
-	gameboard[center][center+1] = 2;
-	
-	return gameboard[N][N];
-}
-*/
-/*int define_N(){
-	int N;
-	printf("input even num N: ");
-	scanf("%i", &N);
-			
-	while((N%2)!= 0){
-	printf("N is not even number\n");
-	printf("input even num N: ");
-	scanf("%i", &N);
-		}
-	return N;
-}
-*/
-
-/*int print_Board(int N){
-	int i; 
-	int j;
-	int game_Board[N][N];
-	
-	for(i=0;i<N;i++){
-		for(j=0;j<N;j++){
-			game_Board[i][j] = 1;
-			printf("%i", game_Board[i][j]);
-		}	printf("\n");
-	}
-	return game_Board[N][N];
-}
-*/
-
-/*int main(){
-	
-	print_Board();
-	
-	return 0;
-}*/
 
 /*int	isGameEnd(){
 	if game end result 1
-}
-
-int	print_othello(){
-}
-
-int check_result(){
 }
 
 int gameboard[N][N];
@@ -110,15 +38,17 @@ int main(){
 	
 	//init_othello()
 		int i,j;
+		int center;
+		center = N/2;
 			for(i=0;i<N;i++){
 				for(j=0;j<N;j++){
 					gameboard[i][j]=' ';
 					}
 				}
-				gameboard[N/2-1][N/2-1] = 'O';
-				gameboard[N/2][N/2] = 'O';
-				gameboard[N/2][N/2-1] = 'X';
-				gameboard[N/2-1][N/2] = 'X';
+				gameboard[center-1][center-1] = 'O';
+				gameboard[center][center] = 'O';
+				gameboard[center][center-1] = 'X';
+				gameboard[center-1][center] = 'X';
 	
 	//print_othello
 	int a,b;
@@ -129,11 +59,92 @@ int main(){
 		for(b=0;b<N;b++){
 			printf("%c|", gameboard[a][b]);
 		}	
-		
 		printf("\n");
 		printf("  -----------\n");
 	}
+
+	//X turn
+	printf("X turn\n");
+	printf("input row: ");
+	scanf("%i", &x);
+	printf("input colmn: ");
+	scanf("%i", &y);
+	gameboard[x][y] = 'X';
 	
+	//Status
+	int c; 
+	int d;
+	int X_num=0;
+	int O_num=0;
+	
+	for(c=0;c<N;c++){
+		for(d=0;d<N;d++){
+			if(gameboard[c][d]=='X')
+				X_num++;
+			else if(gameboard[c][d]=='O')
+				O_num++;
+			}
+	}
+	printf("number of X: %i,number of O: %i\n", X_num, O_num);
+	
+	//check_result
+	if(X_num<O_num)
+		printf("O player win\n");
+	else if(X_num>O_num)
+		printf("X player win\n");
+	else
+		printf("draw\n");
+		
+/*	//flip result
+	int W, E, N, S, NW, NE, SW, SE;
+	
+		if()
+		W=1;
+		else;
+		W=0;
+		
+		if()
+		E=1;
+		else;
+		E=0;
+		
+		if()
+		N=1;
+		else;
+		N=0;
+		
+		if()
+		S=1;
+		else;
+		S=0;
+		
+		if()
+		NW=1;
+		else;
+		NW=0;
+		
+		if()
+		NE=1;
+		else;
+		NE=0;
+		
+		if()
+		SW=1;
+		else;
+		SW=0;
+		
+		if()
+		SE=1;
+		else;
+		SE=0;
+		
+	//invlid input
+		if()
+		
+		
+		else
+		printf("ivalid input(no flip happens)");
+		
 	//choose input player1
 //	printf("input x: ");
 //	scanf("%i", &x);
