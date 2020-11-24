@@ -4,7 +4,8 @@
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 int N=6;
 
-int init_othello(int N, char gameboard[N][N]){
+/*
+char init_othello(int N, char gameboard[N][N]){
 	int i,j;
 	int center;
 	center = N/2;
@@ -19,7 +20,10 @@ int init_othello(int N, char gameboard[N][N]){
 		gameboard[center-1][center] = 'X';
 		
 	return gameboard[N][N];
-}
+}*/
+int	flip_result(int N,int gameboard[N][N]);
+int check_flip_result(int N,int gameboard[N][N]);
+
 
 int Blank(int N, char gameboard[N][N]){
 	int Blank=0;
@@ -91,7 +95,6 @@ void check_result(int N,int gameboard[N][N]){
 				O_num++;
 			}
 	}
-	
 	printf("No more place\n");
 	if(X_num<O_num)
 		printf("O player win\n");
@@ -106,36 +109,59 @@ void main(){
 	int isGameEnd;
 	int x,y;
 	int a,b;
+	int check;
+	int flip;
+	
+	check=check_flip_result(N,gameboard[N][N]);
+	flip=flip_result(x,y,N,gameboard[N][N]);
 
-	gameboard[N][N]=init_othello(N,gameboard[N][N]);//reset the board
+//init_othello
+	int i,j;
+	int center;
+	center = N/2;
+		for(i=0;i<N;i++){
+			for(j=0;j<N;j++){
+				gameboard[i][j]=' ';
+				}
+		}
+		gameboard[center-1][center-1] = 'O';
+		gameboard[center][center] = 'O';
+		gameboard[center][center-1] = 'X';
+		gameboard[center-1][center] = 'X';
+
+//	gameboard[N][N]=init_othello(N,gameboard[N][N]);//reset the board
 	isGameEnd=Blank(N,gameboard[N][N]);
 
 	while (isGameEnd!=0){
 		print_othello(N,gameboard[N][N]);
 		
-		if((gameboard[N][N]==0)&&(flip_result(N,gameboard[N][N])!=0))
+		if((check==0)&&(flip!=0))
 		
 			continue;
 			
 		gameboard[N][N]=input(x,y,gameboard[N][N]);
 			
-		if()
-			if(){
+		if(check_flip_result==0)
+			if(flip_result!=0){
 				printf("");
 				printf("");
 			}
 		else
 			printf("invalid input");
 	}
-	check_result();
+	
+	check_result(N,gameboard[N][N]);
+	
 	return 0;
 }
 
 
-int	flip_result(){
+int	flip_result(int x, int y,int N,int gameboard[N][N]){
 	int W,E,S,North,SW,NW,SE,NE =0;
 	int flip_result;
 	int k;
+	
+	if(gameboard[x][y]==' '){	
 		for(k=0;k<x;k++)
 			if(gameboard[x-k][y]=='Y')
 				W++;
@@ -199,11 +225,31 @@ int	flip_result(){
 			if(gameboard[x+NE+1][y+NE+1]=='X');
 			else
 				NE=0;
-	printf("W:%i, E:%i, S:%i N:%i, SW:%i, NW:%i, SE:%i, NE:%i\n" W,E,S,North,SW,NW,SE,NE);
+				
+		printf("W:%i, E:%i, S:%i N:%i, SW:%i, NW:%i, SE:%i, NE:%i\n" W,E,S,North,SW,NW,SE,NE);
 		
-	flip_result=(W||E||S||North||SW||NW||SE||NE);
+		flip_result=(W+E+S+North+SW+NW+SE+NE);
+	}	
+	else
+	flip_result=0;
 	
 	return flip_result;
+}
+
+int check_flip_result(int N,int gameboard[N][N]){
+	int i,j;
+	int check_flip_result=0;
+	
+		for(i=0;i<N;i++){
+			for(j=0;j<N;j++){
+				if(flip_result(int N,int gameboard[N][N])!=0)
+					check_flip_result++;
+				else
+					check_flip_result=0;
+				}
+		}
+		
+	return check_flip_result;
 }
 
 /*
