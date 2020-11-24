@@ -4,7 +4,62 @@
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
 
+int main(int argc, char *argv[]) {
+	int N=6;
+	char gameboard[N][N];
+	int i,j;
+	int x,y;
+	int isGameEnd;
+	
+	//init othello
+	for(i=0;i<N;i++){
+		for(j=0;j<N;j++)
+			gameboard[i][j]=' ';
+	}
+	gameboard[N/2-1][N/2-1]='O';
+	gameboard[N/2][N/2]='O';
+	gameboard[N/2-1][N/2]='X';
+	gameboard[N/2][N/2-1]='X';	
+	
+	//print_othello
+	printf("  0 1 2 3 4 5\n");
+	printf(" ------------\n");
+	
+	for(i=0;i<N;i++){
+		printf("%i|",i);
+		for(j=0;j<N;j++)
+			printf("%c|", gameboard[i][j]);
+		printf("\n");
+	}		
+	printf(" -----------\n");
+	
+	for(i=0;i<N;i++){
+		for(j=0;j<N;j++)
+			if(gameboard[i][j]!=' '){
+				isGameEnd++;
+			}
+			else 
+				isGameEnd==0;}
+	
+printf("%i\n",	isGameEnd);
+		
+	//input
+		printf("input row: ");
+		scanf("%i",&x);
+		printf("input col: ");
+		scanf("%i",&y);
+	
+		gameboard[x][y]='X';
+		gameboard[i][j]=gameboard[x][y];
 
+			
+	
+
+
+	return 0;
+}
+
+/*
 void init_othello(int N, char gameboard[N][N]){
 	int i,j;
 	int center;
