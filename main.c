@@ -3,30 +3,29 @@
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
-//#define N 6
+/*
 
-/*int	isGameEnd(){
-	if game end result 1
-}
-
-int gameboard[N][N];
+int init_othello(){}
+int isGameEnd(){}
+int print_othello(){}
+void check_result(){}
 
 void main(){
 	
-	init_othello();
+	init_othello();//reset the board
 	
 	while (isGameEnd()==0){
 		print_othello();
-		if()
+		if(flip_result!=0)
 			continue;
-		
+		//input
 		if()
 			if(){
 				printf("");
 				printf("");
 			}
 		else
-			printf("");
+			printf("invalid input");
 	}
 	check_result();
 }*/
@@ -88,6 +87,7 @@ int main(){
 	printf("number of X: %i,number of O: %i\n", X_num, O_num);
 	
 	//check_result
+	printf("No more place\n");
 	if(X_num<O_num)
 		printf("O player win\n");
 	else if(X_num>O_num)
@@ -95,54 +95,55 @@ int main(){
 	else
 		printf("draw\n");
 		
-/*	//flip result
-	int W, E, N, S, NW, NE, SW, SE;
-	
-		if()
-		W=1;
-		else;
-		W=0;
+	//isGameEnd
+	int Blank=0;
+	int e,f;
+		for(e=0;e<N;e++){
+			for(f=0;f<N;f++){
+			if(gameboard[e][f]==' ')
+						Blank++;
+				}
+	}
+	printf("Blank %i\n", Blank);
+	//return Blank;
 		
-		if()
-		E=1;
-		else;
-		E=0;
+	//flip result
+	int W,E,S,North,SW,NW,SE,NE =0;
+	int k;
+		for(k=0;k<x;k++)
+			if(gameboard[x-k][y]=='Y')
+				W++;
+			else;
+		for(k=0;k<x;k++)
+			if(gameboard[x+k][y]=='Y')
+				E++;
+			else;
+		for(k=0;k<x;k++)
+			if(gameboard[x][y-k]=='Y')
+				S++;
+			else;
+		for(k=0;k<x;k++)
+			if(gameboard[x][y+k]=='Y')
+				North++;
+			else;
+		for(k=0;k<x;k++)
+			if(gameboard[x-k][y-k]=='Y')
+				SW++;
+			else;
+		for(k=0;k<x;k++)
+			if(gameboard[x-k][y+k]=='Y')
+				NW++;
+			else;
+		for(k=0;k<x;k++)
+			if(gameboard[x+k][y-k]=='Y')
+				SE++;
+			else;
+		for(k=0;k<x;k++)
+			if(gameboard[x+k][y+k]=='Y')
+				NE++;
+			else;			
 		
-		if()
-		N=1;
-		else;
-		N=0;
-		
-		if()
-		S=1;
-		else;
-		S=0;
-		
-		if()
-		NW=1;
-		else;
-		NW=0;
-		
-		if()
-		NE=1;
-		else;
-		NE=0;
-		
-		if()
-		SW=1;
-		else;
-		SW=0;
-		
-		if()
-		SE=1;
-		else;
-		SE=0;
-		
-	//invlid input
-		if()
-		
-		
-		else
+//		
 		printf("ivalid input(no flip happens)");
 		
 	//choose input player1
