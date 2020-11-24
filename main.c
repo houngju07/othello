@@ -10,6 +10,11 @@ int main(int argc, char *argv[]) {
 	int i,j;
 	int x,y;
 	int isGameEnd;
+	int flip;
+	int X,O;
+	int X_num=0;
+	int O_num=0;
+	int W,E,S,North,SW,NW,SE,NE =0;
 	
 	//init othello
 	for(i=0;i<N;i++){
@@ -33,6 +38,7 @@ int main(int argc, char *argv[]) {
 	}		
 	printf(" -----------\n");
 	
+	//isGameEnd
 	for(i=0;i<N;i++){
 		for(j=0;j<N;j++)
 			if(gameboard[i][j]!=' '){
@@ -40,22 +46,90 @@ int main(int argc, char *argv[]) {
 			}
 			else 
 				isGameEnd==0;}
-	
-printf("%i\n",	isGameEnd);
+
+	//flip
+	for(i=0;i<N;i++){
+		for(j=0;j<N;j++){
+			if((gameboard[i][j]==gameboard[i-1][j])||(gameboard[i-1][j]==' '))
+				W=0;
+			else
+				W++;
+			if((gameboard[i][j]==gameboard[i+1][j])||(gameboard[i+1][j]==' '))
+				E=0;
+			else
+				E++;
+			if((gameboard[i][j]==gameboard[i][j-1])||(gameboard[i][j-1]==' '))
+				S=0;
+			else
+				S++;
+			if((gameboard[i][j]==gameboard[i+1][j+1])||(gameboard[i][j+1]==' '))
+				North=0;
+			else
+				North++;
+			if((gameboard[i][j]==gameboard[i-1][j-1])||(gameboard[i-1][j-1]==' '))
+				SW=0;
+			else
+				SW++;
+			if((gameboard[i][j]==gameboard[i+1][j+1])||(gameboard[i+1][j+1]==' '))
+				NE=0;
+			else
+				NE++;
+			if((gameboard[i][j]==gameboard[i+1][j-1])||(gameboard[i][j-1]==' '))
+				SE=0;
+			else
+				SE++;
+			if((gameboard[i][j]==gameboard[i-1][j+1])||(gameboard[i][j+1]==' '))
+				NW=0;
+			else
+				NW++;
+			}
+		}
 		
-	//input
+		flip=(W+E+S+North+SW+NW+SE+NE);
+
+		
+	
+	
+	while(isGameEnd!=0){
+		if((isGameEnd!=0)&&(flip!=0));
+		
+		else
+			continue;
+
+			//input
 		printf("input row: ");
 		scanf("%i",&x);
 		printf("input col: ");
 		scanf("%i",&y);
-	
 		gameboard[x][y]='X';
 		gameboard[i][j]=gameboard[x][y];
 
-			
+		if((gameboard[i][j]==' '))
+			if(flip!=0){
+				printf("flip : %i",flip);
+
+			}	
+		else
+			printf("invalid input");
+	}
 	
-
-
+	//check_result
+		for(i=0;i<N;i++){
+			for(j=0;j<N;j++){
+				if(gameboard[i][j]=='X')
+					X_num++;
+				else if(gameboard[i][j]=='O')
+					O_num++;
+			}
+	}
+	printf("No more place\n");
+	if(X_num<O_num)
+		printf("O player win\n");
+	else if(X_num>O_num)
+		printf("X player win\n");
+	else
+		printf("draw\n");
+	
 	return 0;
 }
 
