@@ -73,10 +73,42 @@ int status(){
 	return blank_num;
 }
 
-void player_turn(int x, int y, char player){
-	printf("%c turn, %i, %j",x,y,player);
+char player(int turn){
+	char player;
 	
-	gameboard[x][y]=player;
+	if((turn%2)==0)
+		player='X';
+	else
+		player='O';
+	
+	return player;
+}
+
+char another_player(int turn){
+	char another_player;
+	
+	if((turn%2)==0)
+		another_player='O';
+	else
+		another_player='X';
+	
+	return another_player;
+}
+
+int check_around(int x, int y, char player,char another_player){
+	int there_is;
+	int W,E,S,North,SW,NW,SE,NE;
+	flip=0;
+	W=0;
+	E=0;
+	S=0;
+	North=0;
+	SW=0;
+	NW=0;
+	SE=0;
+	NE=0;
+	
+	return there_is;
 }
 
 int flip_num(int x, int y, char another_player,char player){
@@ -124,7 +156,6 @@ int flip_num(int x, int y, char another_player,char player){
 
 
 int main(int argc, char *argv[]) {
-	int i,j;
 	int x,y;
 	int isGameEnd=0;
 	int flip;
@@ -132,65 +163,12 @@ int main(int argc, char *argv[]) {
 	int O_num;
 	int W,E,S,North,SW,NW,SE,NE;
 	int flip_point;
+	int turn;
 	
-	
-	//isGameEnd
+	init_othello();
 
 				
-	//flip
-	flip=0;
-	W=0;
-	E=0;
-	S=0;
-	North=0;
-	SW=0;
-	NW=0;
-	SE=0;
-	NE=0;
 
-	for(i=0;i<N;i++){
-		for(j=0;j<N;j++){
-			if(gameboard[i][j]=='X'){
-			if(gameboard[i-1][j]=='O')
-				W++;
-			else
-				;
-			if(gameboard[i+1][j]=='O')
-				E++;
-			else
-				;
-			if(gameboard[i][j-1]=='O')
-				S++;
-			else
-				;
-			if(gameboard[i+1][j+1]=='O')
-				North++;
-			else
-				;
-			if(gameboard[i-1][j-1]=='O')
-				SW++;
-			else
-				;
-			if(gameboard[i+1][j+1]=='O')
-				NE++;
-			else
-				;
-			if(gameboard[i+1][j-1]=='O')
-				SE++;
-			else
-				;
-			if(gameboard[i-1][j+1]=='O')
-				NW++;
-			else
-				;
-			}
-			else;
-		}
-	}	
-		flip=(W+E+S+North+SW+NW+SE+NE);
-		printf("%i,%i,%i,%i,%i,%i,%i,%i\n",W,E,S,North,SW,NW,SE,NE);
-		printf("%i\n",flip);
-		
 		
 	while(isGameEnd!=0){
 			//print_othello
@@ -200,6 +178,45 @@ int main(int argc, char *argv[]) {
 		
 
 	
+
+		}
+			else
+				printf("invalid input\n");
+				
+		//isGameEnd
+	isGameEnd=0;
+	for(i=0;i<N;i++){	
+		for(j=0;j<N;j++){
+			if(gameboard[i][j]=='A')
+				isGameEnd++;
+			else ;
+		}
+	}
+	printf("%i\n",isGameEnd);
+	}
+	
+	//check_result
+		for(i=0;i<N;i++){
+			for(j=0;j<N;j++){
+				if(gameboard[i][j]=='X')
+					X_num++;
+				else if(gameboard[i][j]=='O')
+					O_num++;
+			}
+	}
+	
+	printf("No more place\n");
+	if(X_num<O_num)
+		printf("O player win\n");
+	else if(X_num>O_num)
+		printf("X player win\n");
+	else
+		printf("draw\n");
+	
+	return 0;
+}
+
+
 //	gameboard[x][y]='X';
 //	gameboard[i][j]=gameboard[x][y];
 
@@ -287,44 +304,60 @@ int main(int argc, char *argv[]) {
 				gameboard[i][j]=gameboard[x][y];
 				printf("flip_point : %i",flip_point);
 				printf("%i,%i,%i,%i,%i,%i,%i,%i\n",W,E,S,North,SW,NW,SE,NE);
-		}
-			else
-				printf("invalid input\n");
-				
-		//isGameEnd
-	isGameEnd=0;
-	for(i=0;i<N;i++){	
+	//flip
+	flip=0;
+	W=0;
+	E=0;
+	S=0;
+	North=0;
+	SW=0;
+	NW=0;
+	SE=0;
+	NE=0;
+
+	for(i=0;i<N;i++){
 		for(j=0;j<N;j++){
-			if(gameboard[i][j]=='A')
-				isGameEnd++;
-			else ;
-		}
-	}
-	printf("%i\n",isGameEnd);
-	}
-	
-	//check_result
-		for(i=0;i<N;i++){
-			for(j=0;j<N;j++){
-				if(gameboard[i][j]=='X')
-					X_num++;
-				else if(gameboard[i][j]=='O')
-					O_num++;
+			if(gameboard[i][j]=='X'){
+			if(gameboard[i-1][j]=='O')
+				W++;
+			else
+				;
+			if(gameboard[i+1][j]=='O')
+				E++;
+			else
+				;
+			if(gameboard[i][j-1]=='O')
+				S++;
+			else
+				;
+			if(gameboard[i+1][j+1]=='O')
+				North++;
+			else
+				;
+			if(gameboard[i-1][j-1]=='O')
+				SW++;
+			else
+				;
+			if(gameboard[i+1][j+1]=='O')
+				NE++;
+			else
+				;
+			if(gameboard[i+1][j-1]=='O')
+				SE++;
+			else
+				;
+			if(gameboard[i-1][j+1]=='O')
+				NW++;
+			else
+				;
 			}
-	}
-	
-	printf("No more place\n");
-	if(X_num<O_num)
-		printf("O player win\n");
-	else if(X_num>O_num)
-		printf("X player win\n");
-	else
-		printf("draw\n");
-	
-	return 0;
-}
-
-
+			else;
+		}
+	}	
+		flip=(W+E+S+North+SW+NW+SE+NE);
+		printf("%i,%i,%i,%i,%i,%i,%i,%i\n",W,E,S,North,SW,NW,SE,NE);
+		printf("%i\n",flip);
+		
 /*
 void init_othello(int N, char gameboard[N][N]){
 	int i,j;
