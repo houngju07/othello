@@ -90,10 +90,8 @@ int main(int argc, char *argv[]) {
 		flip=(W+E+S+North+SW+NW+SE+NE);
 		printf("%i,%i,%i,%i,%i,%i,%i,%i\n",W,E,S,North,SW,NW,SE,NE);
 		printf("%i\n",flip);
-
-	//flip_count
-	
-	
+		
+		
 	while(isGameEnd!=0){
 			//print_othello
 	printf("  0 1 2 3 4 5\n");
@@ -118,14 +116,95 @@ int main(int argc, char *argv[]) {
 	gameboard[x][y]='X';
 	gameboard[i][j]=gameboard[x][y];
 
-		if((gameboard[i][j]=='A'))
+	//int flip_point;
+	flip_point=0;
+	W=0;
+	E=0;
+	S=0;
+	North=0;
+	SW=0;
+	NW=0;
+	SE=0;
+	NE=0;
+	int k;
+		for(k=0;k<x;k++){
+			if(gameboard[x-k][y]=='Y')
+				W++;
+			else if(gameboard[x-k][y]=='X')
+				break;
+			else
+				W=0; 
+				break;
+		for(k=0;k<x;k++)
+			if(gameboard[x+k][y]=='Y')
+				E++;
+			else if(gameboard[x+E+1][y]=='X')
+				break;
+			else
+				E=0;
+				break;					
+		for(k=0;k<x;k++)
+			if(gameboard[x][y-k]=='Y')
+				S++;
+			else if(gameboard[x][y-S-1]=='X')
+				break;
+			else
+				S=0;
+				break;
+		for(k=0;k<x;k++)
+			if(gameboard[x][y+k]=='Y')
+				North++;
+			else if(gameboard[x][y+S+1]=='X')
+				break;
+			else
+				North=0;
+		for(k=0;k<x;k++)
+			if(gameboard[x-k][y-k]=='Y')
+				SW++;
+			else if(gameboard[x-SW-1][y-SW-1]=='X')
+				break;
+			else
+				SW=0;
+				break;
+			
+		for(k=0;k<x;k++)
+			if(gameboard[x-k][y+k]=='Y')
+				NW++;
+			else if(gameboard[x-NW-1][y+NW+1]=='X')
+				break;
+			else
+				NW=0;
+				break;
+			
+		for(k=0;k<x;k++)
+			if(gameboard[x+k][y-k]=='Y')
+				SE++;
+			else if(gameboard[x+SE+1][y-SE-1]=='X')
+				break;
+			else
+				SE=0;
+				break;	
+			
+		for(k=0;k<x;k++)
+			if(gameboard[x+k][y+k]=='Y')
+				NE++;
+			else if(gameboard[x+NE+1][y+NE+1]=='X')	
+				break;
+			else
+				NE=0;
+				break;				
+	}
+	
+		if((gameboard[x][y]=='A')&&(flip_point!=0))
 			if(flip_point!=0){
 				printf("flip_point : %i",flip_point);
-
+				printf("%i,%i,%i,%i,%i,%i,%i,%i\n",W,E,S,North,SW,NW,SE,NE);
 			}	
+			else
+				printf("invalid input");
 		else
-			printf("invalid input");
-			
+				printf("invalid input\n");
+				
 		//isGameEnd
 	isGameEnd=0;
 	for(i=0;i<N;i++){	
