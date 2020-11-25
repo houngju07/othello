@@ -79,7 +79,7 @@ void player_turn(int x, int y, char player){
 	gameboard[x][y]=player;
 }
 
-int flip_num(int x, int y, char player){
+int flip_num(int x, int y, char another_player,char player){
 	int flip;
 	int W,E,S,North,SW,NW,SE,NE;
 	flip=0;
@@ -95,13 +95,26 @@ int flip_num(int x, int y, char player){
 	int k;	
 		for(k;k<x;k++){
 			North++;
-			if(gameboard[x-k-1][y]==player)
+			if(gameboard[x-k-1][y]==another_player)
 				;
 			else if(gameboard[x-k][y]==' ')
 				North=0;
 			else
 				;
 		}
+	if(gameboard[x-1][y]==another_player){
+		if(gameboard[x-2][y]){
+			if(gameboard[x-3][y]){
+			}
+			else if(gameboard[x-3][y]==player)
+				North=2;
+			else gameboard[x-3][y];
+			}
+		else if(gameboard[x-2][y]==player)
+			North=1;
+		else gameboard[x-1][y];
+	}
+	else North=0;
 	
 	printf("%i,%i,%i,%i,%i,%i,%i,%i\n",W,E,S,North,SW,NW,SE,NE);
 	flip=(W+E+S+North+SW+NW+SE+NE);
