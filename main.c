@@ -1,12 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-/* run this program using the console pauser or add your own getch, system("pause") or input loop */
-
+#define N 6
+char gameboard[N][N];
+/* run this program using the console pauser or add your own getch, system("pause") or input loop */ 
 
 int main(int argc, char *argv[]) {
-	int N=6;
-	char gameboard[N][N];
 	int i,j;
 	int x,y;
 	int isGameEnd=0;
@@ -19,7 +17,7 @@ int main(int argc, char *argv[]) {
 	//init othello
 	for(i=0;i<N;i++){
 		for(j=0;j<N;j++)
-			gameboard[i][j]='A';
+			gameboard[i][j]=' ';
 	}
 	gameboard[N/2-1][N/2-1]='O';
 	gameboard[N/2][N/2]='O';
@@ -30,7 +28,7 @@ int main(int argc, char *argv[]) {
 	isGameEnd=0;
 	for(i=0;i<N;i++){	
 		for(j=0;j<N;j++){
-			if(gameboard[i][j]=='A')
+			if(gameboard[i][j]==' ')
 				isGameEnd++;
 			else ;
 		}
