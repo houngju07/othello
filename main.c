@@ -13,6 +13,8 @@ int main(int argc, char *argv[]) {
 	int flip;
 	int X_num;
 	int O_num;
+	int W,E,S,North,SW,NW,SE,NE;
+	int flip_point;
 	
 	//init othello
 	for(i=0;i<N;i++){
@@ -36,46 +38,61 @@ int main(int argc, char *argv[]) {
 	printf("%i\n",isGameEnd);
 				
 	//flip
-	int W,E,S,North,SW,NW,SE,NE =0;
+	flip=0;
+	W=0;
+	E=0;
+	S=0;
+	North=0;
+	SW=0;
+	NW=0;
+	SE=0;
+	NE=0;
+
 	for(i=0;i<N;i++){
 		for(j=0;j<N;j++){
-			if((gameboard[i][j]==gameboard[i-1][j])||(gameboard[i-1][j]=='A'))
-				;
-			else
+			if(gameboard[i][j]=='X'){
+			if(gameboard[i-1][j]=='O')
 				W++;
-			if((gameboard[i][j]==gameboard[i+1][j])||(gameboard[i+1][j]=='A'))
-				;
 			else
+				;
+			if(gameboard[i+1][j]=='O')
 				E++;
-			if((gameboard[i][j]==gameboard[i][j-1])||(gameboard[i][j-1]=='A'))
-				;
 			else
+				;
+			if(gameboard[i][j-1]=='O')
 				S++;
-			if((gameboard[i][j]==gameboard[i+1][j+1])||(gameboard[i][j+1]=='A'))
-				;
 			else
+				;
+			if(gameboard[i+1][j+1]=='O')
 				North++;
-			if((gameboard[i][j]==gameboard[i-1][j-1])||(gameboard[i-1][j-1]=='A'))
-				;
 			else
+				;
+			if(gameboard[i-1][j-1]=='O')
 				SW++;
-			if((gameboard[i][j]==gameboard[i+1][j+1])||(gameboard[i+1][j+1]=='A'))
-				;
 			else
+				;
+			if(gameboard[i+1][j+1]=='O')
 				NE++;
-			if((gameboard[i][j]==gameboard[i+1][j-1])||(gameboard[i][j-1]=='A'))
-				;
 			else
+				;
+			if(gameboard[i+1][j-1]=='O')
 				SE++;
-			if((gameboard[i][j]==gameboard[i-1][j+1])||(gameboard[i][j+1]=='A'))
-				;
 			else
+				;
+			if(gameboard[i-1][j+1]=='O')
 				NW++;
+			else
+				;
 			}
+			else;
 		}
-		
+	}	
 		flip=(W+E+S+North+SW+NW+SE+NE);
+		printf("%i,%i,%i,%i,%i,%i,%i,%i\n",W,E,S,North,SW,NW,SE,NE);
+		printf("%i\n",flip);
 
+	//flip_count
+	
 	
 	while(isGameEnd!=0){
 			//print_othello
@@ -102,8 +119,8 @@ int main(int argc, char *argv[]) {
 	gameboard[i][j]=gameboard[x][y];
 
 		if((gameboard[i][j]=='A'))
-			if(flip!=0){
-				printf("flip : %i",flip);
+			if(flip_point!=0){
+				printf("flip_point : %i",flip_point);
 
 			}	
 		else
