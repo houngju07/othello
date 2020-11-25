@@ -102,8 +102,8 @@ int main(int argc, char *argv[]) {
 		for(j=0;j<N;j++)
 			printf("%c|", gameboard[i][j]);
 		printf("\n");
+			printf(" ------------\n");
 	}		
-	printf(" -----------\n");
 	
 		if((isGameEnd!=0)&&(flip!=0));
 		
@@ -113,8 +113,8 @@ int main(int argc, char *argv[]) {
 	printf("input row: ");
 	scanf("%i",&y);
 	
-	gameboard[x][y]='X';
-	gameboard[i][j]=gameboard[x][y];
+//	gameboard[x][y]='X';
+//	gameboard[i][j]=gameboard[x][y];
 
 	//int flip_point;
 	flip_point=0;
@@ -193,16 +193,15 @@ int main(int argc, char *argv[]) {
 			else
 				NE=0;
 				break;				
-	}
+		}
 	
-		if((gameboard[x][y]=='A')&&(flip_point!=0))
-			if(flip_point!=0){
+		if((gameboard[x][y]=='A')&&(flip_point!=0)){
+				gameboard[x][y]='X';
+				gameboard[i][j]=gameboard[x][y];
 				printf("flip_point : %i",flip_point);
 				printf("%i,%i,%i,%i,%i,%i,%i,%i\n",W,E,S,North,SW,NW,SE,NE);
-			}	
+		}
 			else
-				printf("invalid input");
-		else
 				printf("invalid input\n");
 				
 		//isGameEnd
@@ -674,6 +673,7 @@ int main(){
 			}
 		else
 			printf("wrong position");
+			
 	}
 	check_result();
 */
