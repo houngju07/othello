@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 #define N 6
 char gameboard[N][N];
+
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */ 
 
 void init_othello(){
@@ -31,7 +33,7 @@ void print_othello(){
 }
 
 int get_input(int x){	
-	printf("input: ");
+	printf(": ");
 	scanf("%i",&x);
 	
 	return x;
@@ -39,17 +41,17 @@ int get_input(int x){
 
 int isGameEnd(){
 	int i,j;
-	int isGameEnd=0;
+	int GameEnd=0;
 	for(i=0;i<N;i++){	
 		for(j=0;j<N;j++){
 			if(gameboard[i][j]==' ')
-				isGameEnd++;
+				GameEnd++;
 			else ;
 		}
 	}
-	printf("%i\n",isGameEnd);
+	printf("%i\n",GameEnd);
 	
-	return isGameEnd;
+	return GameEnd;
 }
 
 int status(){	
@@ -73,7 +75,29 @@ int status(){
 	return blank_num;
 }
 
-char player(int turn){
+void check_result(){	
+	int i,j;
+	int X_num=0;
+	int O_num=0;
+	
+	for(i=0;i<N;i++){
+		for(j=0;j<N;j++){
+			if(gameboard[i][j]=='X')
+				X_num++;
+			else if(gameboard[i][j]=='O')
+				O_num++;
+			}
+	}
+	
+	if(X_num<O_num)
+		printf("O player win\n");
+	else if(X_num>O_num)
+		printf("X player win\n");
+	else
+		printf("draw\n");
+}
+
+char get_player(int turn){
 	char player;
 	
 	if((turn%2)==0)
@@ -84,7 +108,7 @@ char player(int turn){
 	return player;
 }
 
-char another_player(int turn){
+char get_another_player(int turn){
 	char another_player;
 	
 	if((turn%2)==0)
@@ -98,7 +122,6 @@ char another_player(int turn){
 int check_around(int x, int y, char player,char another_player){
 	int there_is;
 	int W,E,S,North,SW,NW,SE,NE;
-	flip=0;
 	W=0;
 	E=0;
 	S=0;
@@ -154,69 +177,97 @@ int flip_num(int x, int y, char another_player,char player){
 	return flip;
 }
 
+int check_Empty(int x, int y){
+	int Empty;
+	
+	if(gameboard[x][y]==' ')
+		Empty=1;
+	else
+		Empty=0;
+		
+	return Empty;
+	
+}
 
-int main(int argc, char *argv[]) {
-	int x,y;
-	int isGameEnd=0;
+int check_all(){
+	int PlaceCanPut;
+	int i,j;
+	int Empty;
 	int flip;
-	int X_num;
-	int O_num;
-	int W,E,S,North,SW,NW,SE,NE;
-	int flip_point;
-	int turn;
+
 	
-	init_othello();
-
-				
-
+	for(i=0;i<N;i++){
+	for(j=0;j<N;j++){
+		Empty = check_Empty(i,j);
+		flip = (i,j);
 		
-	while(isGameEnd!=0){
-			//print_othello
-		
+	PlaceCanPut=(Empty&&flip) ;
 	
-		if((isGameEnd!=0)&&(flip!=0));
-		
-
-	
-
-		}
-			else
-				printf("invalid input\n");
-				
-		//isGameEnd
-	isGameEnd=0;
-	for(i=0;i<N;i++){	
-		for(j=0;j<N;j++){
-			if(gameboard[i][j]=='A')
-				isGameEnd++;
-			else ;
-		}
-	}
-	printf("%i\n",isGameEnd);
-	}
-	
-	//check_result
-		for(i=0;i<N;i++){
-			for(j=0;j<N;j++){
-				if(gameboard[i][j]=='X')
-					X_num++;
-				else if(gameboard[i][j]=='O')
-					O_num++;
+	PlaceCanPut++;
 			}
 	}
 	
+	return PlaceCanPut;
+	
+}
+
+
+int main(int argc, char *argv[]) {
+	int x,y;
+	int turn;
+	char player;
+	char another_player;
+	int whose_turn = 0;
+	int End;
+	int place;
+	
+	init_othello();
+
+	End = isGameEnd();
+	place = check_all();
+		
+	while(End!=0){
+		print_othello();
+		
+		player = get_player(whose_turn);
+		another_player = get_another_player(whose_turn);
+		
+		printf("%c turn\n",player);
+		
+		if(place==0){	//if no place... change turn and contine
+			printf("there is no place player %c can put",player);
+			whose_turn++;	//change turn
+			continue;
+		}
+		
+		//input
+		printf("input col");
+		x =	get_input(x);
+		printf("input row");
+		y = get_input(y);
+		
+		if(){
+			
+			gameboard[x][y]=player;
+			
+			whose_turn++;//change turn
+		}
+
+		else{
+			printf("invalid input\n");
+		}
+			
+	status();	
+	End = isGameEnd();
+	}			
+	
 	printf("No more place\n");
-	if(X_num<O_num)
-		printf("O player win\n");
-	else if(X_num>O_num)
-		printf("X player win\n");
-	else
-		printf("draw\n");
+	check_result();
 	
 	return 0;
 }
 
-
+/*
 //	gameboard[x][y]='X';
 //	gameboard[i][j]=gameboard[x][y];
 
