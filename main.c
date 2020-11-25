@@ -9,7 +9,7 @@ int main(int argc, char *argv[]) {
 	char gameboard[N][N];
 	int i,j;
 	int x,y;
-	int isGameEnd;
+	int isGameEnd=0;
 	int flip;
 	int X_num;
 	int O_num;
@@ -17,69 +17,56 @@ int main(int argc, char *argv[]) {
 	//init othello
 	for(i=0;i<N;i++){
 		for(j=0;j<N;j++)
-			gameboard[i][j]=' ';
+			gameboard[i][j]='A';
 	}
 	gameboard[N/2-1][N/2-1]='O';
 	gameboard[N/2][N/2]='O';
 	gameboard[N/2-1][N/2]='X';
 	gameboard[N/2][N/2-1]='X';	
 	
-	//print_othello
-	printf("  0 1 2 3 4 5\n");
-	printf(" ------------\n");
-	
-	for(i=0;i<N;i++){
-		printf("%i|",i);
-		for(j=0;j<N;j++)
-			printf("%c|", gameboard[i][j]);
-		printf("\n");
-	}		
-	printf(" -----------\n");
-	
 	//isGameEnd
 	for(i=0;i<N;i++){	
 		for(j=0;j<N;j++){
-			if(gameboard[i][j]==' ')
+			if(gameboard[i][j]=='A')
 				isGameEnd++;
-			else 
-				isGameEnd=0;
+			else ;
 		}
-	printf("%i\n",isGameEnd);
 	}
+	printf("%i\n",isGameEnd);
 				
 	//flip
 	int W,E,S,North,SW,NW,SE,NE =0;
 	for(i=0;i<N;i++){
 		for(j=0;j<N;j++){
-			if((gameboard[i][j]==gameboard[i-1][j])||(gameboard[i-1][j]==' '))
+			if((gameboard[i][j]==gameboard[i-1][j])||(gameboard[i-1][j]=='A'))
 				W=0;
 			else
 				W++;
-			if((gameboard[i][j]==gameboard[i+1][j])||(gameboard[i+1][j]==' '))
+			if((gameboard[i][j]==gameboard[i+1][j])||(gameboard[i+1][j]=='A'))
 				E=0;
 			else
 				E++;
-			if((gameboard[i][j]==gameboard[i][j-1])||(gameboard[i][j-1]==' '))
+			if((gameboard[i][j]==gameboard[i][j-1])||(gameboard[i][j-1]=='A'))
 				S=0;
 			else
 				S++;
-			if((gameboard[i][j]==gameboard[i+1][j+1])||(gameboard[i][j+1]==' '))
+			if((gameboard[i][j]==gameboard[i+1][j+1])||(gameboard[i][j+1]=='A'))
 				North=0;
 			else
 				North++;
-			if((gameboard[i][j]==gameboard[i-1][j-1])||(gameboard[i-1][j-1]==' '))
+			if((gameboard[i][j]==gameboard[i-1][j-1])||(gameboard[i-1][j-1]=='A'))
 				SW=0;
 			else
 				SW++;
-			if((gameboard[i][j]==gameboard[i+1][j+1])||(gameboard[i+1][j+1]==' '))
+			if((gameboard[i][j]==gameboard[i+1][j+1])||(gameboard[i+1][j+1]=='A'))
 				NE=0;
 			else
 				NE++;
-			if((gameboard[i][j]==gameboard[i+1][j-1])||(gameboard[i][j-1]==' '))
+			if((gameboard[i][j]==gameboard[i+1][j-1])||(gameboard[i][j-1]=='A'))
 				SE=0;
 			else
 				SE++;
-			if((gameboard[i][j]==gameboard[i-1][j+1])||(gameboard[i][j+1]==' '))
+			if((gameboard[i][j]==gameboard[i-1][j+1])||(gameboard[i][j+1]=='A'))
 				NW=0;
 			else
 				NW++;
