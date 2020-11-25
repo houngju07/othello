@@ -11,10 +11,8 @@ int main(int argc, char *argv[]) {
 	int x,y;
 	int isGameEnd;
 	int flip;
-	int X,O;
-	int X_num=0;
-	int O_num=0;
-	int W,E,S,North,SW,NW,SE,NE =0;
+	int X_num;
+	int O_num;
 	
 	//init othello
 	for(i=0;i<N;i++){
@@ -39,15 +37,18 @@ int main(int argc, char *argv[]) {
 	printf(" -----------\n");
 	
 	//isGameEnd
-	for(i=0;i<N;i++){
-		for(j=0;j<N;j++)
-			if(gameboard[i][j]!=' '){
+	for(i=0;i<N;i++){	
+		for(j=0;j<N;j++){
+			if(gameboard[i][j]==' ')
 				isGameEnd++;
-			}
 			else 
-				isGameEnd==0;}
-
+				isGameEnd=0;
+		}
+	printf("%i\n",isGameEnd);
+	}
+				
 	//flip
+	int W,E,S,North,SW,NW,SE,NE =0;
 	for(i=0;i<N;i++){
 		for(j=0;j<N;j++){
 			if((gameboard[i][j]==gameboard[i-1][j])||(gameboard[i-1][j]==' '))
@@ -87,22 +88,30 @@ int main(int argc, char *argv[]) {
 		
 		flip=(W+E+S+North+SW+NW+SE+NE);
 
-		
-	
 	
 	while(isGameEnd!=0){
+			//print_othello
+	printf("  0 1 2 3 4 5\n");
+	printf(" ------------\n");
+	
+	for(i=0;i<N;i++){
+		printf("%i|",i);
+		for(j=0;j<N;j++)
+			printf("%c|", gameboard[i][j]);
+		printf("\n");
+	}		
+	printf(" -----------\n");
+	
 		if((isGameEnd!=0)&&(flip!=0));
 		
-		else
-			continue;
-
-			//input
-		printf("input row: ");
-		scanf("%i",&x);
-		printf("input col: ");
-		scanf("%i",&y);
-		gameboard[x][y]='X';
-		gameboard[i][j]=gameboard[x][y];
+		//input
+	printf("input col: ");
+	scanf("%i",&x);
+	printf("input row: ");
+	scanf("%i",&y);
+	
+	gameboard[x][y]='X';
+	gameboard[i][j]=gameboard[x][y];
 
 		if((gameboard[i][j]==' '))
 			if(flip!=0){
@@ -122,6 +131,7 @@ int main(int argc, char *argv[]) {
 					O_num++;
 			}
 	}
+	
 	printf("No more place\n");
 	if(X_num<O_num)
 		printf("O player win\n");
