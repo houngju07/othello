@@ -4,7 +4,8 @@
 char gameboard[N][N];
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */ 
 
-void init othello(){
+void init_othello(){
+	int i,j;
 	for(i=0;i<N;i++){
 		for(j=0;j<N;j++)
 			gameboard[i][j]=' ';
@@ -16,9 +17,10 @@ void init othello(){
 }
 
 void print_othello(){
+	int i,j;
+	
 	printf("  0 1 2 3 4 5\n");
 	printf(" ------------\n");
-	
 	for(i=0;i<N;i++){
 		printf("%i|",i);
 		for(j=0;j<N;j++)
@@ -26,9 +28,86 @@ void print_othello(){
 		printf("\n");
 			printf(" ------------\n");
 	}		
-
 }
 
+int get_input(int x){	
+	printf("input: ");
+	scanf("%i",&x);
+	
+	return x;
+}
+
+int isGameEnd(){
+	int i,j;
+	int isGameEnd=0;
+	for(i=0;i<N;i++){	
+		for(j=0;j<N;j++){
+			if(gameboard[i][j]==' ')
+				isGameEnd++;
+			else ;
+		}
+	}
+	printf("%i\n",isGameEnd);
+	
+	return isGameEnd;
+}
+
+int status(){	
+	int i,j;
+	int blank_num;
+	int X_num=0;
+	int O_num=0;
+	
+	for(i=0;i<N;i++){
+		for(j=0;j<N;j++){
+			if(gameboard[i][j]=='X')
+				X_num++;
+			else if(gameboard[i][j]=='O')
+				O_num++;
+			}
+	}
+	printf("number of X: %i,number of O: %i\n", X_num, O_num);
+	
+	blank_num=(36-X_num-O_num);
+	
+	return blank_num;
+}
+
+void player_turn(int x, int y, char player){
+	printf("%c turn, %i, %j",x,y,player);
+	
+	gameboard[x][y]=player;
+}
+
+int flip_num(int x, int y, char player){
+	int flip;
+	int W,E,S,North,SW,NW,SE,NE;
+	flip=0;
+	W=0;
+	E=0;
+	S=0;
+	North=0;
+	SW=0;
+	NW=0;
+	SE=0;
+	NE=0;
+	
+	int k;	
+		for(k;k<x;k++){
+			North++;
+			if(gameboard[x-k-1][y]==player)
+				;
+			else if(gameboard[x-k][y]==' ')
+				North=0;
+			else
+				;
+		}
+	
+	printf("%i,%i,%i,%i,%i,%i,%i,%i\n",W,E,S,North,SW,NW,SE,NE);
+	flip=(W+E+S+North+SW+NW+SE+NE);
+	
+	return flip;
+}
 
 
 int main(int argc, char *argv[]) {
@@ -43,15 +122,7 @@ int main(int argc, char *argv[]) {
 	
 	
 	//isGameEnd
-	isGameEnd=0;
-	for(i=0;i<N;i++){	
-		for(j=0;j<N;j++){
-			if(gameboard[i][j]==' ')
-				isGameEnd++;
-			else ;
-		}
-	}
-	printf("%i\n",isGameEnd);
+
 				
 	//flip
 	flip=0;
@@ -110,24 +181,11 @@ int main(int argc, char *argv[]) {
 		
 	while(isGameEnd!=0){
 			//print_othello
-	printf("  0 1 2 3 4 5\n");
-	printf(" ------------\n");
-	
-	for(i=0;i<N;i++){
-		printf("%i|",i);
-		for(j=0;j<N;j++)
-			printf("%c|", gameboard[i][j]);
-		printf("\n");
-			printf(" ------------\n");
-	}		
+		
 	
 		if((isGameEnd!=0)&&(flip!=0));
 		
-		//input
-	printf("input col: ");
-	scanf("%i",&x);
-	printf("input row: ");
-	scanf("%i",&y);
+
 	
 //	gameboard[x][y]='X';
 //	gameboard[i][j]=gameboard[x][y];
@@ -252,6 +310,7 @@ int main(int argc, char *argv[]) {
 	
 	return 0;
 }
+
 
 /*
 void init_othello(int N, char gameboard[N][N]){
