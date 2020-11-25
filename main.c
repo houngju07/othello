@@ -25,6 +25,7 @@ int main(int argc, char *argv[]) {
 	gameboard[N/2][N/2-1]='X';	
 	
 	//isGameEnd
+	isGameEnd=0;
 	for(i=0;i<N;i++){	
 		for(j=0;j<N;j++){
 			if(gameboard[i][j]=='A')
@@ -39,35 +40,35 @@ int main(int argc, char *argv[]) {
 	for(i=0;i<N;i++){
 		for(j=0;j<N;j++){
 			if((gameboard[i][j]==gameboard[i-1][j])||(gameboard[i-1][j]=='A'))
-				W=0;
+				;
 			else
 				W++;
 			if((gameboard[i][j]==gameboard[i+1][j])||(gameboard[i+1][j]=='A'))
-				E=0;
+				;
 			else
 				E++;
 			if((gameboard[i][j]==gameboard[i][j-1])||(gameboard[i][j-1]=='A'))
-				S=0;
+				;
 			else
 				S++;
 			if((gameboard[i][j]==gameboard[i+1][j+1])||(gameboard[i][j+1]=='A'))
-				North=0;
+				;
 			else
 				North++;
 			if((gameboard[i][j]==gameboard[i-1][j-1])||(gameboard[i-1][j-1]=='A'))
-				SW=0;
+				;
 			else
 				SW++;
 			if((gameboard[i][j]==gameboard[i+1][j+1])||(gameboard[i+1][j+1]=='A'))
-				NE=0;
+				;
 			else
 				NE++;
 			if((gameboard[i][j]==gameboard[i+1][j-1])||(gameboard[i][j-1]=='A'))
-				SE=0;
+				;
 			else
 				SE++;
 			if((gameboard[i][j]==gameboard[i-1][j+1])||(gameboard[i][j+1]=='A'))
-				NW=0;
+				;
 			else
 				NW++;
 			}
@@ -100,13 +101,24 @@ int main(int argc, char *argv[]) {
 	gameboard[x][y]='X';
 	gameboard[i][j]=gameboard[x][y];
 
-		if((gameboard[i][j]==' '))
+		if((gameboard[i][j]=='A'))
 			if(flip!=0){
 				printf("flip : %i",flip);
 
 			}	
 		else
 			printf("invalid input");
+			
+		//isGameEnd
+	isGameEnd=0;
+	for(i=0;i<N;i++){	
+		for(j=0;j<N;j++){
+			if(gameboard[i][j]=='A')
+				isGameEnd++;
+			else ;
+		}
+	}
+	printf("%i\n",isGameEnd);
 	}
 	
 	//check_result
