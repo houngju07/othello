@@ -513,7 +513,7 @@ void fliper(int x, int y, char another_player,char player){
 	for(n=1;n<=SE;n++){
 	gameboard[x+n][y+n]=player;}		
 	
-	printf("%i,%i,%i,%i,%i,%i,%i,%i\n",W,E,S,North,SW,NW,SE,NE);
+	printf("W: %i,E: %i,S: %i,N: %i,SW: %i,NW: %i,SE: %i,NE: %i\n",W,E,S,North,SW,NW,SE,NE);
 
 }
 
