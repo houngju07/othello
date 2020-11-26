@@ -49,7 +49,7 @@ int isGameEnd(){								//게임 보드의 빈칸 갯수 구하고 출력하는 함수.
 	return GameEnd;
 }
 
-void status(){									//게임 보드의 X돌 갯수와 O돌 갯수 구하고 출력하는 함수. 
+void status(){									//게임 보드의 X돌 갯수와 O돌 갯수 구하고 출력하는 함수.  
 	int i,j;
 	int blank_num;
 	int X_num=0;

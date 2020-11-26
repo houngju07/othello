@@ -1,7 +1,7 @@
 #define N 6
 char gameboard[N][N];
 
-int flip_num(int x, int y, char another_player,char player){				//입력된 x,y에 대해 gameboard[x][y]가 입력되었을때 flip 되는 total 돌의 갯수 구하는 함수. 8방향에 대한 flip 갯수 더하면 돼  
+int flip_num(int x, int y, char another_player,char player){				//입력된 x,y에 대해 gameboard[x][y]가 입력되었을때 flip 되는 total 돌의 갯수 구하는 함수. 8방향에 대한 flip 갯수 더하면 돼   
 	int flip;
 	int W,E,S,North,SW,NW,SE,NE;
 	

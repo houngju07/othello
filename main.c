@@ -1,19 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define N 6									//define N=6 for 6*6 game board(size of game board never change during game play, so that demine N as macro 
+#define N 6									//define N=6 for 6*6 game board(size of game board never change during game play, so that demine N as macro  
 char gameboard[N][N];						//define game board
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */ 
 
 int main(int argc, char *argv[]) {			//main function
-	int x,y;								//게임 보드상에서 input 좌표 정의하기 위함  
-	char player;							
-	char another_player;					
-	int whose_turn = 0;
-	int End;								
-	int place;
-	int flip_sum;
+	int x,y;								//게임 보드상에서 input 좌표
+	char player;							//차례 player
+	char another_player;					//차례아닌  player
+	int whose_turn = 0;						//차례 바뀌는 것
+	int End;								//gameboard 상에서 빈칸 갯수 
+	int place;								//gameboard 상에서 input 놓을수 있는 좌표 갯수 
+	int flip_sum;							//flip 되는 total 돌의 갯수 
 	
 	init_othello();							//게임 시작할때 게임 보드 상태 불러오는 함수 (가운데 4개의 각각 대각선으로 존재하는 초기 게임 형태). 게임 초기화  
 
