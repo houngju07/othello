@@ -426,24 +426,6 @@ int flip_num(int x, int y, char another_player,char player){
 	return flip;
 }
 
-int print_flip_num(int x, int y, char another_player,char player){
-	int flip;
-	int W,E,S,North,SW,NW,SE,NE;
-	
-	W=W_flip(x,y,player,another_player);
-	E=E_flip(x,y,player,another_player);
-	S=S_flip(x,y,player,another_player);
-	North=North_flip(x,y,player,another_player);
-	SW=SW_flip(x,y,player,another_player);
-	NW=NW_flip(x,y,player,another_player);
-	SE=SE_flip(x,y,player,another_player);
-	NE=NE_flip(x,y,player,another_player);
-
-	printf("%i,%i,%i,%i,%i,%i,%i,%i\n",W,E,S,North,SW,NW,SE,NE);
-	flip=(W+E+S+North+SW+NW+SE+NE);
-	
-	return flip;
-}
 
 int check_Empty(int x, int y){
 	int Empty;
