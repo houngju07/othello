@@ -119,23 +119,10 @@ char get_another_player(int turn){
 	return another_player;
 }
 
-int check_around(int x, int y, char player,char another_player){
-	int there_is;
-	int W,E,S,North,SW,NW,SE,NE;
-	W=0;
-	E=0;
-	S=0;
-	North=0;
-	SW=0;
-	NW=0;
-	SE=0;
-	NE=0;
-	
-	return there_is;
-}
 
 int North_flip(int x, int y, char player, char another_player){
 	int k;
+	int n;
 	
 	if(gameboard[x-1][y]==another_player){
 		if(gameboard[x-2][y]==another_player){
@@ -165,13 +152,17 @@ int North_flip(int x, int y, char player, char another_player){
 	}
 	else 
 		k=0;
+	
+	for(n=1;n<=k;n++){
+		gameboard[x-n][y]=player;}
 
 	return k;
 }
 
 int S_flip(int x, int y, char player, char another_player){
 	int k;
-	
+	int n;
+		
 	if(gameboard[x+1][y]==another_player){
 		if(gameboard[x+2][y]==another_player){
 			if(gameboard[x+3][y]==another_player){
@@ -200,13 +191,18 @@ int S_flip(int x, int y, char player, char another_player){
 	}
 	else 
 		k=0;
+		
+	for(n=1;n<=k;n++){
+		gameboard[x+n][y]=player;}
+
 
 	return k;
 }
 
 int W_flip(int x, int y, char player, char another_player){
 	int k;
-	
+	int n;
+		
 	if(gameboard[x][y-1]==another_player){
 		if(gameboard[x][y-2]==another_player){
 			if(gameboard[x][y-3]==another_player){
@@ -235,13 +231,18 @@ int W_flip(int x, int y, char player, char another_player){
 	}
 	else 
 		k=0;
+		
+
+	for(n=1;n<=k;n++){
+		gameboard[x][y-n]=player;}
 
 	return k;
 }
 
 int E_flip(int x, int y, char player, char another_player){
 	int k;
-	
+	int n;
+		
 	if(gameboard[x][y+1]==another_player){
 		if(gameboard[x][y+2]==another_player){
 			if(gameboard[x][y+3]==another_player){
@@ -270,13 +271,17 @@ int E_flip(int x, int y, char player, char another_player){
 	}
 	else 
 		k=0;
+		
+	for(n=1;n<=k;n++){
+		gameboard[x][y+n]=player;}	
 
 	return k;
 }
 
 int NW_flip(int x, int y, char player, char another_player){
 	int k;
-	
+	int n;
+		
 	if(gameboard[x-1][y-1]==another_player){
 		if(gameboard[x-2][y-2]==another_player){
 			if(gameboard[x-3][y-3]==another_player){
@@ -306,12 +311,16 @@ int NW_flip(int x, int y, char player, char another_player){
 	else 
 		k=0;
 
+	for(n=1;n<=k;n++){
+		gameboard[x-n][y-n]=player;}
+
 	return k;
 }
 
 int NE_flip(int x, int y, char player, char another_player){
 	int k;
-	
+	int n;
+		
 	if(gameboard[x-1][y+1]==another_player){
 		if(gameboard[x-2][y+2]==another_player){
 			if(gameboard[x-3][y+3]==another_player){
@@ -340,12 +349,16 @@ int NE_flip(int x, int y, char player, char another_player){
 	}
 	else 
 		k=0;
+		
+	for(n=1;n<=k;n++){
+		gameboard[x-n][y+n]=player;}
 
 	return k;
 }
 
 int SW_flip(int x, int y, char player, char another_player){
 	int k;
+	int n;
 	
 	if(gameboard[x+1][y-1]==another_player){
 		if(gameboard[x+2][y-2]==another_player){
@@ -375,13 +388,17 @@ int SW_flip(int x, int y, char player, char another_player){
 	}
 	else 
 		k=0;
+		
+	for(n=1;n<=k;n++){
+		gameboard[x+n][y-n]=player;}		
 
 	return k;
 }
 
 int SE_flip(int x, int y, char player, char another_player){
 	int k;
-	
+	int n;
+		
 	if(gameboard[x+1][y+1]==another_player){
 		if(gameboard[x+2][y+2]==another_player){
 			if(gameboard[x+3][y+3]==another_player){
@@ -410,6 +427,9 @@ int SE_flip(int x, int y, char player, char another_player){
 	}
 	else 
 		k=0;
+		
+	for(n=1;n<=k;n++){
+		gameboard[x+n][y+n]=player;}		
 
 	return k;
 }
@@ -417,40 +437,16 @@ int SE_flip(int x, int y, char player, char another_player){
 int flip_num(int x, int y, char another_player,char player){
 	int flip;
 	int W,E,S,North,SW,NW,SE,NE;
-	flip=0;
-	W=0;
-	E=0;
-	S=0;
-	North=0;
-	SW=0;
-	NW=0;
-	SE=0;
-	NE=0;
 	
-	int k;	
-		for(k;k<x;k++){
-			North++;
-			if(gameboard[x-k-1][y]==another_player)
-				;
-			else if(gameboard[x-k][y]==' ')
-				North=0;
-			else
-				;
-		}
-	if(gameboard[x-1][y]==another_player){
-		if(gameboard[x-2][y]){
-			if(gameboard[x-3][y]){
-			}
-			else if(gameboard[x-3][y]==player)
-				North=2;
-			else gameboard[x-3][y];
-			}
-		else if(gameboard[x-2][y]==player)
-			North=1;
-		else gameboard[x-1][y];
-	}
-	else North=0;
-	
+	W=W_flip(x,y,player,another_player);
+	E=E_flip(x,y,player,another_player);
+	S=S_flip(x,y,player,another_player);
+	North=North_flip(x,y,player,another_player);
+	SW=SW_flip(x,y,player,another_player);
+	NW=NW_flip(x,y,player,another_player);
+	SE=SE_flip(x,y,player,another_player);
+	NE=NE_flip(x,y,player,another_player);
+
 	printf("%i,%i,%i,%i,%i,%i,%i,%i\n",W,E,S,North,SW,NW,SE,NE);
 	flip=(W+E+S+North+SW+NW+SE+NE);
 	
@@ -469,26 +465,23 @@ int check_Empty(int x, int y){
 	
 }
 
-int check_all(){
-	int PlaceCanPut;
+int check_all(char player, char another_player){
+	int PlaceCanPut=0;
 	int i,j;
 	int Empty;
 	int flip;
 
-	
 	for(i=0;i<N;i++){
 	for(j=0;j<N;j++){
 		Empty = check_Empty(i,j);
-		flip = (i,j);
+		flip = flip_num(i,j,player,another_player);
 		
-	PlaceCanPut=(Empty&&flip) ;
-	
-	PlaceCanPut++;
+		PlaceCanPut=(Empty&&flip) ;
+		PlaceCanPut++;
 			}
 	}
 	
 	return PlaceCanPut;
-	
 }
 
 
