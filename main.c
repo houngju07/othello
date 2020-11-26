@@ -49,7 +49,7 @@ int isGameEnd(){
 			else ;
 		}
 	}
-	printf("%i\n",GameEnd);
+	printf("number of empty place :%i\n",GameEnd);
 	
 	return GameEnd;
 }
